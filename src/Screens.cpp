@@ -33,7 +33,7 @@ void Screens::startupScreen() {
 
     u8g2.setDrawColor(0);
     u8g2.setFont(u8g2_font_7x14B_tr);
-    u8g2.drawStr(30, 30, "Ed's Car");
+    u8g2.drawStr(30, 30, "My Car");
     u8g2.setFont(mainFont);
 
     u8g2.sendBuffer();
@@ -56,7 +56,7 @@ void Screens::raceScreen() {
     u8g2.setFont(u8g2_font_6x10_tr);
     u8g2.drawStr(92, 58, std::to_string(throttle).c_str());
     u8g2.setFont(mainFont);
-    float angle = - PI / 2.0 - (abs(throttle) / 100.0 * PI);
+    float angle = -PI / 2.0 - (abs(throttle) / 100.0 * PI);
     drawLineAtAngle(&u8g2, 97, 58, 20, angle, 8);
 
     // Draw Gear Info

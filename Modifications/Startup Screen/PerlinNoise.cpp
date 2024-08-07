@@ -1,5 +1,8 @@
 /*
 This is the perlin noise start screen. It does a 3d perlin noise animation then displays a name.
+
+you will NEED to import the perlin lib from src/src
+so put #include "src/Perlin.h" at the top of your code
  */
 
 // ------------- REPLACE function startupScreen() WITH THIS ------------/
