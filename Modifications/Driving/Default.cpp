@@ -24,7 +24,7 @@ int Driving::calculateThrottle() {
 
     currentIntensity = currentIntensity - getPaddleRightHigh();
     currentIntensity = throttleMax - (throttleMax * currentIntensity / throttleRange);
-    currentIntensity = abs(currentIntensity);
+
     int currentThrottle = currentIntensity;
     if (currentIntensity < 0) currentThrottle = 0;
     if (currentIntensity > throttleMax) currentThrottle = throttleMax;
