@@ -1,45 +1,11 @@
-#include "Arduino.h"
-#include "src/Screens.h"
-#include "src/FPV/FpvTransmitter.h"
-#include "src/Menu/Menu.h"
-#include <string>
-#include "src/Perlin.h"
-
-extern U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2;
+/*
+This is the code for the Race screen to make it look like a dashboard.
+ */
 
 
-// Run when steering wheel starts up.
-void Screens::startupScreen() {
-    u8g2.begin();
-    u8g2.setFont(mainFont);
-    randomSeed(analogRead(A0));
-    int offsetX = random(1, 1000);
-    int offsetY = random(1, 1000);
 
-    float freq = 0.02f;
-    for (int z = 0; z < 110; z++) {
-        u8g2.clearBuffer();
-        for (int x = 0; x < 128; x++) {
-            for (int y = 0; y < 64; y++) {
-                float pValue = pnoise(float(offsetX + x) * freq, float(offsetY + y) * freq, float(z) * freq);
-                if ((pValue > 0 && z < 90) || (z >= 90 && pValue > -float(z - 90) / 20.0)) {
-                    u8g2.drawPixel(x, y);
-                }
-            }
-        }
-        u8g2.sendBuffer();
-        delay(20);
-    }
+// ------------------------ REPLACE THE raceScreen() FUNCTION WITH THIS --------------------------------//
 
-    u8g2.setDrawColor(0);
-    u8g2.setFont(u8g2_font_7x14B_tr);
-    u8g2.drawStr(30, 30, "Ed's Car");
-    u8g2.setFont(mainFont);
-
-    u8g2.sendBuffer();
-    u8g2.setDrawColor(1);
-    delay(2000);
-}
 
 // Edit what is shown on the race screen here.
 void Screens::raceScreen() {
@@ -56,7 +22,7 @@ void Screens::raceScreen() {
     u8g2.setFont(u8g2_font_6x10_tr);
     u8g2.drawStr(92, 58, std::to_string(throttle).c_str());
     u8g2.setFont(mainFont);
-    float angle = - PI / 2.0 - (abs(throttle) / 100.0 * PI);
+    float angle = -PI / 2.0 - (abs(throttle) / 100.0 * PI);
     drawLineAtAngle(&u8g2, 97, 58, 20, angle, 8);
 
     // Draw Gear Info

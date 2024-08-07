@@ -9,6 +9,7 @@ class Driving {
     void calculateDriving(){
 
         throttle = calculateThrottle();
+        steering = calculateSteering();
 
     }
         int8_t getThrottle() const{return throttle;}
