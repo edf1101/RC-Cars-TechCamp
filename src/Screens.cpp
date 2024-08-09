@@ -2,7 +2,6 @@
 #include "src/Screens.h"
 #include "src/FPV/FpvTransmitter.h"
 #include "src/Menu/Menu.h"
-#include <string>
 #include "src/Perlin.h"
 
 extern U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2;
@@ -54,17 +53,19 @@ void Screens::raceScreen() {
     // draw throttle info
     u8g2.drawStr(79, 29, "Speed");
     u8g2.setFont(u8g2_font_6x10_tr);
-    u8g2.drawStr(92, 58, std::to_string(throttle).c_str());
+
+    u8g2.drawStr(92, 58, String(throttle).c_str());
     u8g2.setFont(mainFont);
+
     float angle = -PI / 2.0 - (abs(throttle) / 100.0 * PI);
     drawLineAtAngle(&u8g2, 97, 58, 20, angle, 8);
 
     // Draw Gear Info
     int gear =Driving::getGear(); // keep it at 1 for now
     if (throttle == 0) gear = 0;
-    std::string gearInfo = (throttle > 0)
-                               ? "F" + std::to_string(gear)
-                               : ((throttle < 0) ? "R" + std::to_string(gear) : "N");
+    String gearInfo = (throttle > 0)
+                               ? "F" + String(gear)
+                               : ((throttle < 0) ? "R" + String(gear) : "N");
 
     u8g2.drawStr(17, 29, "Gear");
     u8g2.setFont(u8g2_font_6x10_tr);

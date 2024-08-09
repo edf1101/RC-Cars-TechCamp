@@ -20,17 +20,19 @@ void Screens::raceScreen() {
     // draw throttle info
     u8g2.drawStr(79, 29, "Speed");
     u8g2.setFont(u8g2_font_6x10_tr);
-    u8g2.drawStr(92, 58, std::to_string(throttle).c_str());
+
+    u8g2.drawStr(92, 58, String(throttle).c_str());
     u8g2.setFont(mainFont);
+
     float angle = -PI / 2.0 - (abs(throttle) / 100.0 * PI);
     drawLineAtAngle(&u8g2, 97, 58, 20, angle, 8);
 
     // Draw Gear Info
-    int gear = 1; // keep it at 1 for now
+    int gear =Driving::getGear(); // keep it at 1 for now
     if (throttle == 0) gear = 0;
-    std::string gearInfo = (throttle > 0)
-                               ? "F" + std::to_string(gear)
-                               : ((throttle < 0) ? "R" + std::to_string(gear) : "N");
+    String gearInfo = (throttle > 0)
+                               ? "F" + String(gear)
+                               : ((throttle < 0) ? "R" + String(gear) : "N");
 
     u8g2.drawStr(17, 29, "Gear");
     u8g2.setFont(u8g2_font_6x10_tr);
@@ -43,7 +45,7 @@ void Screens::raceScreen() {
     int maxLineLength = 40;
     int mappedSteering = map(steering, 0, 180, -maxLineLength, maxLineLength);
     //draw a box around the steering bit
-    u8g2.drawFrame(64 - maxLineLength - 3, 5, (2 * maxLineLength) + 3, 10);
+    u8g2.drawFrame(64 - maxLineLength - 3, 5, (2 * maxLineLength) + 6, 10);
     // draw a middle line to represent where 0 steering is
     u8g2.drawVLine(64, 5, 10);
     // draw the line representing steering magnitude

@@ -45,12 +45,6 @@ public:
     buttonSwitch switch5;
     buttonSwitch switch6;
 
-    bool move1 = false;
-    bool move2 = false;
-    bool move3 = false;
-    bool move4 = false;
-    bool move5 = false;
-    bool move6 = false;
 };
 
 

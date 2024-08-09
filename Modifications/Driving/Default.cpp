@@ -12,6 +12,7 @@ Note this is the entire file to copy into Driving.cpp
 #include "src/FPV/FpvTransmitter.h"
 
 
+int Driving::gear = 1;
 
 int Driving::calculateThrottle() {
     // This is the default code for working out throttle with the

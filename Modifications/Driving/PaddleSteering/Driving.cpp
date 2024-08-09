@@ -4,22 +4,6 @@
 
 int Driving::gear = 1;
 
-void Driving::setGear(int _gear) {
-    gear = _gear;
-    if (gear < 1)
-        gear = 1;
-    if (gear > totalGears)
-        gear = totalGears;
-}
-
-int Driving::getGear() {
-    return gear;
-}
-
-int Driving::getMaxGear() {
-    return totalGears;
-}
-
 
 int Driving::calculateThrottle() {
     // This is the default code for working out throttle with the

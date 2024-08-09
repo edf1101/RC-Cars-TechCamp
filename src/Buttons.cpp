@@ -6,14 +6,13 @@
 
 void Buttons::handleButtons(int *throttleMax, int *steeringMax) {
     if (digitalRead(FpvTransmitter::d1) == LOW) {
-        Driving::setGear(1);
+        // button 1 pressed
     }
     if (digitalRead(FpvTransmitter::d2) == LOW) {
-        Driving::setGear(2);
+        //button 2 pressed
     }
     if (digitalRead(FpvTransmitter::d3) == LOW) {
         // Button 3 pressed.
-        Driving::setGear(3);
     }
     if (digitalRead(FpvTransmitter::d4) == LOW) {
         // Button 4 pressed.
@@ -27,21 +26,13 @@ void Buttons::handleButtons(int *throttleMax, int *steeringMax) {
 }
 
 
-
-
 void Buttons::checkButtonHeld() {
-    if (digitalRead(FpvTransmitter::d1) == HIGH)
-        switch1.held = 0;
-    if (digitalRead(FpvTransmitter::d2) == HIGH)
-        switch2.held = 0;
-    if (digitalRead(FpvTransmitter::d3) == HIGH)
-        switch3.held = 0;
-    if (digitalRead(FpvTransmitter::d4) == HIGH)
-        switch4.held = 0;
-    if (digitalRead(FpvTransmitter::d5) == HIGH)
-        switch5.held = 0;
-    if (digitalRead(FpvTransmitter::d6) == HIGH)
-        switch6.held = 0;
+    switch1.held = (digitalRead(FpvTransmitter::d1) == LOW);
+    switch2.held = (digitalRead(FpvTransmitter::d2) == LOW);
+    switch3.held = (digitalRead(FpvTransmitter::d3) == LOW);
+    switch4.held = (digitalRead(FpvTransmitter::d4) == LOW);
+    switch5.held = (digitalRead(FpvTransmitter::d5) == LOW);
+    switch6.held = (digitalRead(FpvTransmitter::d6) == LOW);
 }
 
 Buttons::Buttons(): switch1(buttonSwitch(FpvTransmitter::d1)),
@@ -49,4 +40,5 @@ Buttons::Buttons(): switch1(buttonSwitch(FpvTransmitter::d1)),
                     switch3(buttonSwitch(FpvTransmitter::d3)),
                     switch4(buttonSwitch(FpvTransmitter::d4)),
                     switch5(buttonSwitch(FpvTransmitter::d5)),
-                    switch6(buttonSwitch(FpvTransmitter::d6)) {}
+                    switch6(buttonSwitch(FpvTransmitter::d6)) {
+}

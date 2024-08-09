@@ -86,17 +86,17 @@ void FpvTransmitter::menuChange(const char *itemName, int value)
             u8g2.clearBuffer(); // Refresh screen.
 
             // Check if any red buttons pressed, and if so put the button number in the 'command' parameter to send to the receiver
-            if (digitalRead(d1) == LOW && buttonsSystem.move1 == true)
+            if (digitalRead(d1) == LOW && buttonsSystem.switch1.held == true)
                 outgoingRadioPacket.command = 1;
-            else if (digitalRead(d2) == LOW && buttonsSystem.move2 == true)
+            else if (digitalRead(d2) == LOW && buttonsSystem.switch2.held == true)
                 outgoingRadioPacket.command = 2;
-            else if (digitalRead(d3) == LOW && buttonsSystem.move3 == true)
+            else if (digitalRead(d3) == LOW && buttonsSystem.switch3.held == true)
                 outgoingRadioPacket.command = 3;
-            else if (digitalRead(d4) == LOW && buttonsSystem.move4 == true)
+            else if (digitalRead(d4) == LOW && buttonsSystem.switch4.held == true)
                 outgoingRadioPacket.command = 4;
-            else if (digitalRead(d5) == LOW && buttonsSystem.move5 == true)
+            else if (digitalRead(d5) == LOW && buttonsSystem.switch5.held == true)
                 outgoingRadioPacket.command = 5;
-            else if (digitalRead(d6) == LOW && buttonsSystem.move6 == true)
+            else if (digitalRead(d6) == LOW && buttonsSystem.switch6.held == true)
                 outgoingRadioPacket.command = 6;
             else
                 outgoingRadioPacket.command = 0;
